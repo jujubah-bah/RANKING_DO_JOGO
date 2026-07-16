@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style>
+        body{
+            height: 100%;
+            margin: 0;
+            text-align: center;
+            font-family: Arial;
+         
+        background-image: url('fundo.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; 
+        background-repeat: no-repeat;
+}
+
+        h1{
+            color:rgb(255, 255, 255)
+        }
+        .card{
+            border: 1px solid rgb(0, 0, 0);
+            background-color: rgba(125, 133, 245, 1);
+            width: 250px;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    .banner{
+    width:100%;
+    height:auto;
+    display:block;
+    margin-bottom:20px;
+}
+
+    </style>
+</head>
+<body>
+   
+
+    
+   <h1>🎮RANKING DE JOGADORES🎮</h1>
+
+    <input type="text" id="nome" placeholder="Nome do Jogador">
+    <input type="number" id="Pontuacao" placeholder="pontuacao">
+    <input type="text" id="nivel" placeholder="Nível">
+    <button onclick="adicionaritem()">Adicionar Jogador</button>
+
+    <div id="Ranking"><div></div>
+    
+    <script>
+        let produtos = [
+            { 
+                nome: "🎮larissa_01",
+               pontuacao: 100,
+               nivel: "Nível 1"
+
+             },
+              {
+                nome: "🎮joao_8",
+               pontuacao: 150,
+               nivel: "Nível 2"
+             },
+             {
+              nome: "🎮pedro_3",
+               pontuacao: 200,
+               nivel: "Nível 5"
+             },
+             {
+              nome: "🎮ana_7",
+              pontuacao: 250,
+              nivel: "Nível 3"
+                 },
+                 {
+              nome: "🎮maria_5",
+              pontuacao: 300,
+              nivel: "Nível 4"
+                 }
+        ];
+
+        function listarjogadores(){
+             produtos.sort(function(a, b){
+
+                if(Number(b.pontuacao) != Number(a.pontuacao)){
+                    return Number(b.pontuacao) - Number(a.pontuacao);
+                }
+
+                return a.nome.localeCompare(b.nome);
+            });
+
+            let ranking= document.getElementById("Ranking");
+
+            ranking.innerHTML = "";
+
+            for(let i = 0; i < produtos.length; i++){
+                ranking.innerHTML += 
+                "<div class='card'>" +
+                    "<h2>" + produtos[i].nome + "</h2>" +
+                    "<p>" + produtos[i].pontuacao + "</p>" +
+                    "<p>" + produtos[i].nivel + "</p>" +
+                    "</div>"
+             }
+            let maior = produtos[0].pontuacao;
+            let menor = produtos[0].pontuacao;
+
+            for(let i = 0; i < produtos.length; i++){
+
+            if(produtos[i].pontuacao > maior){
+                    maior = produtos[i].pontuacao;
+            }
+
+            if(produtos[i].pontuacao < menor){
+                    menor = produtos[i].pontuacao;
+                }
+            }
+            
+            }
+
+            listarjogadores();
+        
+            function adicionaritem(){
+                let nome = document.getElementById("nome").value;
+                let pontuacao = document.getElementById("Pontuacao").value;
+                let nivel = document.getElementById("nivel").value;
+
+                produtos.push({
+                    nome: nome,
+                    pontuacao: pontuacao,
+                    nivel: nivel
+                });
+                
+    
+
+                listarjogadores();
+
+                document.getElementById("nome").value = "";
+                document.getElementById("Pontuacao").value = "";
+                document.getElementById("nivel").value = "";
+            }
+    </script>
+
+
+</body>
+m
+        </html>
